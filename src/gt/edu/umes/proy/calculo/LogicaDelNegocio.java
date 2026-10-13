@@ -12,7 +12,7 @@ public class LogicaDelNegocio {
         int meses, semanas, dias, horas, minutos;
 
         try {
-            // Validar que todos los parámetros sean enteros[cite: 7]
+            // Validar que todos los parámetros sean enteros
             meses = Integer.parseInt(args[0]);
             semanas = Integer.parseInt(args[1]);
             dias = Integer.parseInt(args[2]);
