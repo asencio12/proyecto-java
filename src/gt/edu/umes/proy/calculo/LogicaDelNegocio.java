@@ -30,6 +30,6 @@ public class LogicaDelNegocio {
                              (horas * 3600L) +
                              (minutos * 60L);
 
-        System.out.println("Total en segundos: " + totalSegundos);
+        System.out.println("Total en segundos exito!! : " + totalSegundos);
     }
 }
