@@ -2,34 +2,40 @@ package gt.edu.umes.proy.calculo;
 
 public class LogicaDelNegocio {
 
-    public void procesarCalculo(String[] args) {
-        // Validar 5 parámetros
-        if (args.length != 5) {
-            System.out.println("Error: Debe ingresa 5 parámetros siguiendo este modelo (meses, semanas, días, horas, minutos).");
-            return;
+    // Valida y calcula. Lanza IllegalArgumentException si algo está mal.
+    public long calcularSegundos(String[] args) {
+        if (args == null || args.length != 5) {
+            throw new IllegalArgumentException(
+                "Debe ingresar 5 parámetros (meses, semanas, días, horas, minutos).");
         }
 
         int meses, semanas, dias, horas, minutos;
-
         try {
-            // Validar parámetros sean enteros
             meses = Integer.parseInt(args[0]);
             semanas = Integer.parseInt(args[1]);
             dias = Integer.parseInt(args[2]);
             horas = Integer.parseInt(args[3]);
             minutos = Integer.parseInt(args[4]);
         } catch (NumberFormatException e) {
-            System.out.println("Error: Los parámetros deben ser números enteros válidos ingresa nuevamente otro parametro");
-            return;
+            throw new IllegalArgumentException(
+                "Los parámetros deben ser números enteros válidos.", e);
         }
 
-        // Conversión para segundos (1 mes = 30 días, 1 semana = 7 días)
-        long totalSegundos = (meses * 30L * 24 * 3600) +
-                             (semanas * 7L * 24 * 3600) +
-                             (dias * 24L * 3600) +
-                             (horas * 3600L) +
-                             (minutos * 60L);
+        // 1 mes = 30 días, 1 semana = 7 días
+        return (meses * 30L * 24 * 3600) +
+               (semanas * 7L * 24 * 3600) +
+               (dias * 24L * 3600) +
+               (horas * 3600L) +
+               (minutos * 60L);
+    }
 
-        System.out.println("Exitoooo total segundos : " + totalSegundos);
+    // Lo que llama CalculaMinutos.main(): no cambia su comportamiento
+    public void procesarCalculo(String[] args) {
+        try {
+            long total = calcularSegundos(args);
+            System.out.println("Exitoooo total segundos : " + total);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
     }
 }
