@@ -1,6 +1,8 @@
 package test.java;
 
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+import gt.edu.umes.proy.calculo.LogicaDelNegocio;
 
 import org.junit.jupiter.api.Test;
 
